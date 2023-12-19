@@ -20,3 +20,28 @@ export const getAllJobs = async (req,res,next)=>{
         jobs
     })
 }
+
+export const updateJobs = async (req,res,next)=>{
+    const {id} = req.params;
+    const {company,position} = req.body;
+
+    //validation
+    if (!company || !position){
+        next("Please provide all fields");
+    }
+    const job = await Job.findOne({_id:id});
+    if (!job){
+        next(`No jobs found with this ${id}`);
+    }
+
+    // if (req.user.userId === job.createBy.toString()){
+    //     return;
+    //     next('You are not authorize to update the job')
+    // }
+    const updatedJob = await Job.findOneAndUpdate({_id:id},req.body,{
+        new:true,
+        runValidators:true
+    })
+
+   res.status(200).json({updatedJob});
+}
