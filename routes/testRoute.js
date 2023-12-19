@@ -1,9 +1,9 @@
 import express,{Router}from "express";
 import {testController} from "../controllers/testController.js";
-import authMiddlewares from "../middlewares/authMiddlewares.js";
+import userAuth from "../middlewares/authMiddlewares.js";
 
 
 const router = Router();
 
-router.route('/test-post').post(authMiddlewares,testController);
+router.route('/test-post').post(userAuth,testController);
 export default router;

@@ -8,6 +8,7 @@ import testRoute from "./routes/testRoute.js";
 import authRoutes from "./routes/authRoutes.js";
 import errorMiddlewares from "./middlewares/errorMiddlewares.js";
 import "express-async-errors";
+import jobsRoutes from "./routes/jobsRoutes.js";
 dotenv.config({
     path :'./config/.env'
 });
@@ -34,4 +35,5 @@ app.use(errorMiddlewares);
 
 app.use('/api/v1/test',testRoute);
 app.use('/api/v1/auth',authRoutes);
-app.use('/api/v1/auth',authRoutes)
+app.use('/api/v1/auth',authRoutes);
+app.use('/api/v1/job',jobsRoutes);
